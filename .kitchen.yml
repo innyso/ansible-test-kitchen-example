@@ -1,0 +1,23 @@
+---
+driver:
+  name: docker
+  binary: /usr/local/bin/docker
+  use_sudo: false
+
+provisioner:
+  name: ansible_playbook
+  hosts: foobar
+  role_path: roles
+  require_ansible_repo: true
+
+verifier:
+  namer: serverspec
+
+platforms:
+  - name: ubuntu
+
+suites:
+  - name: default
+    provisioner:
+      name: ansible_playbook
+      playbook: site.yml
